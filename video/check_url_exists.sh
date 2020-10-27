@@ -2,8 +2,8 @@
 #cat /dev/null >a.txt
 cat $1 | while read line
 do
-  status=$(curl -s --head $line | head -n 1 |grep 'HTTP/1.[01] [23]..')
-  if [ -n "$status" ]; then
+  type=$(curl -s --head $line |grep 'video/mp4')
+  if [ -n "$type" ]; then
     echo $line>>a.txt
   else
     echo "不存在：${line##*.net}" 
