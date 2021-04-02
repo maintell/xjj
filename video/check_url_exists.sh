@@ -8,6 +8,10 @@ do
   else
     echo "不存在：${line##*.net}" 
     newline=$(grep ${line##*.net} $1.bak)
-    echo $newline>>a.txt
+    if [ -n "$newline" ]; then
+      echo $newline>>a.txt
+    else
+      echo $line>>NOTFOUND.txt
+    fi
   fi
 done
